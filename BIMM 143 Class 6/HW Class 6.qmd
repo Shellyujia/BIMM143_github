@@ -1,0 +1,49 @@
+---
+title: "HW Class 06"
+author: "Yujia Liu"
+format: pdf
+---
+
+
+##B
+# Can you improve this analysis code? Q6.
+
+```{r}
+
+library(bio3d)
+s1 <- read.pdb("4AKE") # kinase with drug
+s2 <- read.pdb("1AKE") # kinase no drug
+s3 <- read.pdb("1E4Y") # kinase with drug
+s1.chainA <- trim.pdb(s1, chain="A", elety="CA")
+s2.chainA <- trim.pdb(s2, chain="A", elety="CA")
+s3.chainA <- trim.pdb(s1, chain="A", elety="CA")
+s1.b <- s1.chainA$atom$b
+s2.b <- s2.chainA$atom$b
+s3.b <- s3.chainA$atom$b
+plotb3(s1.b, sse=s1.chainA, typ="l", ylab="Bfactor")
+plotb3(s2.b, sse=s2.chainA, typ="l", ylab="Bfactor")
+plotb3(s3.b, sse=s3.chainA, typ="l", ylab="Bfactor")
+```
+
+##Solving process:
+
+```{r}
+#First make a vector list of pdb to be processed and plotted
+pdb_id <- c("4AKE", "1AKE", "1E4Y")
+```
+
+
+
+```{r}
+plotfunc <- function(pdb_id){ #name the function and use the function on pdb_id
+  step1 <- read.pdb(pdb_id) #Step 1 read each pdb_id
+  step2 <- trim.pdb(step1, chain="A", elety="CA") #Step 2 trim the read pdb in step 1
+  step3 <- step2$atom$b #Step 3 select the data to be plotted
+  plotb3(step3, sse=step2, typ="l", ylab="Bfactor") #Plot
+}
+```
+
+
+```{r}
+lapply(pdb_id, plotfunc) #apply the defined function "plotfunc" onto the vector list of pdb_id
+```
