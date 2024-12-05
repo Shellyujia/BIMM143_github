@@ -1,12 +1,12 @@
 ---
 title: "Class 6: R functions"
 author: "Yujia Liu (PID: A16967405)"
-format: pdf
+format: gfm
 ---
 
 Today we are going to explore R functions and begin to think about writing our own functions.
 
-Let's start sumple and write our first function to add some numbers.
+Let's start simple and write our first function to add some numbers.
 
 Every function in R has at least 3 things:
 
